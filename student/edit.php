@@ -2,7 +2,7 @@
 session_start(); // Start the session
 $pageTitle = "Edit Student";
 include '../header.php';
-include '../functions.php';
+include '../functions.php';s
 verifyActiveSession();  // Protect the page to ensure only logged-in users can access
 
 // Retrieve student data using index from session or redirect if not found
