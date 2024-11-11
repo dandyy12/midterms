@@ -19,7 +19,7 @@ include 'functions.php';
 // Check if the session is still valid (to prevent direct URL access after logout)
 checkUserSessionIsActive();  // Ensure this function verifies session status
 
-guard();  // Ensure that the user is logged in to access the dashboard
+verifyActiveSession();  // Ensure that the user is logged in to access the dashboard
 
 ?>
 <main>

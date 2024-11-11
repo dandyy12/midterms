@@ -64,7 +64,7 @@ function checkUserSessionIsActive() {
 
 
 
-function guard() {
+function verifyActiveSession(){
     if (empty($_SESSION['email']) && basename($_SERVER['PHP_SELF']) != 'index.php') {
         // Only redirect if the user is not logged in and is trying to access a protected page
         header("Location: index.php"); 
@@ -152,4 +152,13 @@ function getSelectedStudentData($index) {
     }
     return false;
 }
+
+// Function to update student's name and last name by index
+// function updateStudent($index, $name, $lastname) {
+//     if (isset($_SESSION['student_data'][$index])) {
+//         $_SESSION['student_data'][$index]['name'] = $name;
+//         $_SESSION['student_data'][$index]['lastname'] = $lastname;
+//     }
+// }
+
 ?>
