@@ -4,7 +4,7 @@ session_start();
 $pageTitle = "Register Student";
 include '../header.php'; // Corrected path to header.php
 include '../functions.php'; // Corrected path to functions.php
-guard();
+verifyActiveSession();
 
 $errors = [];
 $student_data = [];
