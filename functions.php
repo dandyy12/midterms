@@ -3,11 +3,11 @@
 
 function getUsers() {
     return [
-        ["email" => "admin1@example.com", "password" => "admin1"],
-        ["email" => "admin2@example.com", "password" => "admin2"],
-        ["email" => "admin3@example.com", "password" => "admin3"],
-        ["email" => "admin4@example.com", "password" => "admin4"],
-        ["email" => "admin5@example.com", "password" => "admin5"]
+        ["email" => "user1@example.com", "password" => "user1"],
+        ["email" => "user2@example.com", "password" => "user2"],
+        ["email" => "user3@example.com", "password" => "user3"],
+        ["email" => "user4@example.com", "password" => "user4"],
+        ["email" => "user5@example.com", "password" => "user5"]
     ];
 }
 
@@ -56,7 +56,7 @@ function checkLoginCredentials($email, $password, $users) {
 function checkUserSessionIsActive() {
     // Only redirect if the user is already logged in and trying to access the login page
     if (isset($_SESSION['email']) && basename($_SERVER['PHP_SELF']) == 'index.php') {
-        // Redirect to the dashboard if the user is logged in
+
         header("Location: dashboard.php");
         exit;
     }
@@ -66,7 +66,7 @@ function checkUserSessionIsActive() {
 
 function verifyActiveSession(){
     if (empty($_SESSION['email']) && basename($_SERVER['PHP_SELF']) != 'index.php') {
-        // Only redirect if the user is not logged in and is trying to access a protected page
+
         header("Location: index.php"); 
         exit;
     }
