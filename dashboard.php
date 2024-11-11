@@ -1,73 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    
-    <!-- Link to Bootstrap CSS (from CDN) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container mt-5">
-        <!-- Welcome Message -->
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h3 id="welcomeMessage">Welcome to the System</h3>
-            <button class="btn btn-danger" onclick="logout()">Logout</button>
-        </div>
+<?php
+session_start(); // Ensure the session is started
+$pageTitle = "Dashboard";
+// Check if the user is logged in, if not, redirect to login page
+if (empty($_SESSION['email'])) {
+    header("Location: index.php");
+    exit;
+}
 
-        <!-- Cards for Add Subject and Register Student -->
-        <div class="row">
-            <!-- Add a Subject Card -->
-            <div class="col-md-6 mb-4">
-                <div class="card shadow-sm border-0">
-                    <div class="card-body">
-                        <h5 class="card-title">Add a Subject</h5>
-                        <p class="card-text">This section allows you to add a new subject in the system. Click the button below to proceed with the adding process.</p>
-                        <button class="btn btn-primary w-100">Add Subject</button>
+// Block browser back button access to previously cached pages
+header("Cache-Control: no-store, no-cache, must-revalidate"); 
+header("Cache-Control: post-check=0, pre-check=0", false); 
+header("Pragma: no-cache");
+
+
+include 'header.php'; 
+include 'functions.php'; 
+
+// Check if the session is still valid (to prevent direct URL access after logout)
+checkUserSessionIsActive();  // Ensure this function verifies session status
+
+verifyActiveSession();  // Ensure that the user is logged in to access the dashboard
+
+?>
+<main>
+    <br>
+    <div class="container d-flex justify-content-between align-items-center col-md-7">
+        <h4>Welcome to the System: <?php echo $_SESSION['email']; ?></h4>
+        <button onclick="window.location.href='logout.php'" class="btn btn-danger">Logout</button>
+    </div>
+
+    <!-- Register Student Card --> 
+    <div class="container d-flex justify-content-between align-items-center col-md-7"> 
+        <div class="container row d-flex justify-content-between align-items-right mt-5">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Register a Student</h5>
                     </div>
-                </div>
-            </div>
-
-            <!-- Register a Student Card -->
-            <div class="col-md-6 mb-4">
-                <div class="card shadow-sm border-0">
                     <div class="card-body">
-                        <h5 class="card-title">Register a Student</h5>
-                        <p class="card-text">This section allows you to register a new student in the system. Click the button below to proceed with the registration process.</p>
-                        <a href="register.php" class="btn btn-primary w-100">Register</a>
+                        <p class="justify-text-center">This section allows you to  register a new student in the system. Click the button bellow to proceed with the registration process.</p>
+
+                        <!-- Button to proceed to register a student -->
+                        <div class="d-grid gap-2">
+                            <a href="student/register.php" class="btn btn-primary w-100">Register a Student</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</main>
 
-    <!-- Bootstrap JS (for interactive components like modals) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Custom JavaScript -->
-    <script>
-        // Display the user's email in the welcome message
-        function setWelcomeMessage(email) {
-            document.getElementById('welcomeMessage').textContent = `Welcome to the System: ${email}`;
-        }
-
-        // Logout function
-        function logout() {
-            // Clear user session or token here if needed
-            window.location.href = 'login.php'; // Redirect to login page
-        }
-
-        // Assume the email is passed through session or local storage
-        document.addEventListener("DOMContentLoaded", function() {
-            const email = localStorage.getItem('userEmail');
-            if (email) {
-                setWelcomeMessage(email);
-            } else {
-                // Redirect to login if email is not set (user is not logged in)
-                window.location.href = 'login.php';
-            }
-        });
-    </script>
-</body>
-</html>
+<?php
+include 'footer.php';  // Include the footer
+?>
