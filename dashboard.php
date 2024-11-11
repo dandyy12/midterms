@@ -1,3 +1,4 @@
+
 <?php
 session_start(); // Ensure the session is started
 $pageTitle = "Dashboard";

@@ -152,13 +152,4 @@ function getSelectedStudentData($index) {
     }
     return false;
 }
-
-// Function to update student's name and last name by index
-// function updateStudent($index, $name, $lastname) {
-//     if (isset($_SESSION['student_data'][$index])) {
-//         $_SESSION['student_data'][$index]['name'] = $name;
-//         $_SESSION['student_data'][$index]['lastname'] = $lastname;
-//     }
-// }
-
 ?>
