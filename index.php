@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <main>
     <div class="container d-flex flex-column align-items-center mt-5">
-        <!-- Error Notification Area (Display All Errors/Notifications) -->
+
         <?php if (!empty($notification)): ?>
             <div class="col-md-4 mb-3">
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -84,5 +84,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </main>
 
 <?php
-include 'footer.php'; // Include the footer
+include 'footer.php';
 ?>
